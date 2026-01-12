@@ -11,11 +11,11 @@ const sendTokenResponse = (user, statusCode, res) => {
   const token = generateToken(user._id);
 
   const options = {
-    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
-  };
+    secure: true,          // REQUIRED for cross-site
+    sameSite: 'none'       // REQUIRED for cross-site
+  };  
 
   res
     .status(statusCode)
