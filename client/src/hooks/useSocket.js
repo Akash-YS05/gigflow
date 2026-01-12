@@ -12,7 +12,8 @@ export const useSocket = () => {
 
   useEffect(() => {
     if (!socketRef.current) {
-      socketRef.current = io({
+      const socketUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || undefined;
+      socketRef.current = io(socketUrl, {
         withCredentials: true
       });
     }
