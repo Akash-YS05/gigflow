@@ -44,7 +44,11 @@ export const useSocket = () => {
 
       socket.on('newBid', (bid) => {
         dispatch(addBid(bid));
-        toast.success('New bid received!', { duration: 3000 });
+        // Only show toast if the bid is not from the current user
+        const bidderId = bid.freelancerId?._id || bid.freelancerId;
+        if (bidderId !== user._id) {
+          toast.success('New bid received!', { duration: 3000 });
+        }
       });
     }
 
