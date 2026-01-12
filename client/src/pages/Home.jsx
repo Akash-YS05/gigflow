@@ -42,7 +42,7 @@ const Home = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="pt-24 pb-20 md:pt-32 md:pb-28 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
+      <div className="pt-24 pb-20 md:pt-20 md:pb-28 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
           <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -376,13 +376,13 @@ const Home = () => {
           <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm">&copy; 2026 GigFlow. All rights reserved.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition">
+              <a href="https://x.com/akashpandeytwt" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                 Twitter
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition">
+              <a href="https://linkedin.com/in/li-akash-pandey" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition">
+              <a href="https://github.com/Akash-YS05" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                 GitHub
               </a>
             </div>
