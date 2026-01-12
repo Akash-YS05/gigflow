@@ -51,7 +51,7 @@ export const getMe = createAsyncThunk(
 
 const initialState = {
   user: null,
-  isLoading: false,
+  isLoading: true,
   isAuthenticated: false,
   error: null
 };
