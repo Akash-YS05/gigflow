@@ -213,6 +213,6 @@ This ensures that even with concurrent hire requests, only one will succeed.
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the MIT License.
 
 ---
