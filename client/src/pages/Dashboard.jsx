@@ -77,59 +77,94 @@ const Dashboard = () => {
                   </Link>
                 </div>
                 {myGigs.length > 0 ? (
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200">
-                    <table className="min-w-full divide-y divide-slate-200">
-                      <thead className="bg-slate-50 border-b border-slate-200">
-                        <tr>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Title
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Budget
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Status
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Hired
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-white divide-y divide-slate-200">
-                        {myGigs.map((gig) => (
-                          <tr key={gig._id} className="hover:bg-slate-50 transition">
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm font-semibold text-slate-900">{gig.title}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm font-semibold text-slate-900">${gig.budget}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <span
-                                className={`px-3 py-1.5 text-xs rounded-full font-semibold ${statusColors[gig.status]}`}
-                              >
-                                {gig.status.charAt(0).toUpperCase() + gig.status.slice(1)}
-                              </span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-slate-600">{gig.hiredFreelancerId?.name || "-"}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <Link
-                                to={`/gigs/${gig._id}`}
-                                className="text-blue-600 hover:text-blue-700 text-sm font-semibold"
-                              >
-                                View Details
-                              </Link>
-                            </td>
+                  <>
+                    {/* Desktop Table */}
+                    <div className="hidden md:block bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200">
+                      <table className="min-w-full divide-y divide-slate-200">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Title
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Budget
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Status
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Hired
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Action
+                            </th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-slate-200">
+                          {myGigs.map((gig) => (
+                            <tr key={gig._id} className="hover:bg-slate-50 transition">
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm font-semibold text-slate-900">{gig.title}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm font-semibold text-slate-900">${gig.budget}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span
+                                  className={`px-3 py-1.5 text-xs rounded-full font-semibold ${statusColors[gig.status]}`}
+                                >
+                                  {gig.status.charAt(0).toUpperCase() + gig.status.slice(1)}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm text-slate-600">{gig.hiredFreelancerId?.name || "-"}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <Link
+                                  to={`/gigs/${gig._id}`}
+                                  className="text-blue-600 hover:text-blue-700 text-sm font-semibold"
+                                >
+                                  View Details
+                                </Link>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Mobile Cards */}
+                    <div className="md:hidden space-y-4">
+                      {myGigs.map((gig) => (
+                        <div key={gig._id} className="bg-white rounded-lg shadow-lg p-4 border border-slate-200">
+                          <div className="flex justify-between items-start mb-3">
+                            <h3 className="text-base font-semibold text-slate-900 flex-1 pr-2">{gig.title}</h3>
+                            <span
+                              className={`px-3 py-1 text-xs rounded-full font-semibold whitespace-nowrap ${statusColors[gig.status]}`}
+                            >
+                              {gig.status.charAt(0).toUpperCase() + gig.status.slice(1)}
+                            </span>
+                          </div>
+                          <div className="space-y-2 text-sm mb-4">
+                            <div className="flex justify-between">
+                              <span className="text-slate-500">Budget:</span>
+                              <span className="font-semibold text-slate-900">${gig.budget}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-slate-500">Hired:</span>
+                              <span className="text-slate-600">{gig.hiredFreelancerId?.name || "-"}</span>
+                            </div>
+                          </div>
+                          <Link
+                            to={`/gigs/${gig._id}`}
+                            className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition"
+                          >
+                            View Details
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 ) : (
                   <div className="bg-white rounded-lg shadow-lg p-8 text-center border border-slate-200">
                     <p className="text-slate-600 mb-4 font-light">You haven't posted any jobs yet.</p>
@@ -145,61 +180,98 @@ const Dashboard = () => {
               <div>
                 <h2 className="text-2xl font-bold text-slate-900 mb-6">Jobs You Bid On</h2>
                 {myBids.length > 0 ? (
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200">
-                    <table className="min-w-full divide-y divide-slate-200">
-                      <thead className="bg-slate-50 border-b border-slate-200">
-                        <tr>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Job Title
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Your Bid
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Budget
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Status
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-white divide-y divide-slate-200">
-                        {myBids.map((bid) => (
-                          <tr key={bid._id} className="hover:bg-slate-50 transition">
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm font-semibold text-slate-900">{bid.gigId?.title || "N/A"}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm font-semibold text-slate-900">${bid.price}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-slate-600">${bid.gigId?.budget || "N/A"}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <span
-                                className={`px-3 py-1.5 text-xs rounded-full font-semibold ${statusColors[bid.status]}`}
-                              >
-                                {bid.status.charAt(0).toUpperCase() + bid.status.slice(1)}
-                              </span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              {bid.gigId && (
-                                <Link
-                                  to={`/gigs/${bid.gigId._id}`}
-                                  className="text-blue-600 hover:text-blue-700 text-sm font-semibold"
-                                >
-                                  View Gig
-                                </Link>
-                              )}
-                            </td>
+                  <>
+                    {/* Desktop Table */}
+                    <div className="hidden md:block bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200">
+                      <table className="min-w-full divide-y divide-slate-200">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Job Title
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Your Bid
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Budget
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Status
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                              Action
+                            </th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-slate-200">
+                          {myBids.map((bid) => (
+                            <tr key={bid._id} className="hover:bg-slate-50 transition">
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm font-semibold text-slate-900">{bid.gigId?.title || "N/A"}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm font-semibold text-slate-900">${bid.price}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm text-slate-600">${bid.gigId?.budget || "N/A"}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span
+                                  className={`px-3 py-1.5 text-xs rounded-full font-semibold ${statusColors[bid.status]}`}
+                                >
+                                  {bid.status.charAt(0).toUpperCase() + bid.status.slice(1)}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                {bid.gigId && (
+                                  <Link
+                                    to={`/gigs/${bid.gigId._id}`}
+                                    className="text-blue-600 hover:text-blue-700 text-sm font-semibold"
+                                  >
+                                    View Gig
+                                  </Link>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Mobile Cards */}
+                    <div className="md:hidden space-y-4">
+                      {myBids.map((bid) => (
+                        <div key={bid._id} className="bg-white rounded-lg shadow-lg p-4 border border-slate-200">
+                          <div className="flex justify-between items-start mb-3">
+                            <h3 className="text-base font-semibold text-slate-900 flex-1 pr-2">{bid.gigId?.title || "N/A"}</h3>
+                            <span
+                              className={`px-3 py-1 text-xs rounded-full font-semibold whitespace-nowrap ${statusColors[bid.status]}`}
+                            >
+                              {bid.status.charAt(0).toUpperCase() + bid.status.slice(1)}
+                            </span>
+                          </div>
+                          <div className="space-y-2 text-sm mb-4">
+                            <div className="flex justify-between">
+                              <span className="text-slate-500">Your Bid:</span>
+                              <span className="font-semibold text-slate-900">${bid.price}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-slate-500">Budget:</span>
+                              <span className="text-slate-600">${bid.gigId?.budget || "N/A"}</span>
+                            </div>
+                          </div>
+                          {bid.gigId && (
+                            <Link
+                              to={`/gigs/${bid.gigId._id}`}
+                              className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition"
+                            >
+                              View Gig
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 ) : (
                   <div className="bg-white rounded-lg shadow-lg p-8 text-center border border-slate-200">
                     <p className="text-slate-600 mb-4 font-light">You haven't bid on any jobs yet.</p>
